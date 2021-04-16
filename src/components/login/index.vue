@@ -7,7 +7,7 @@
         </b-field>
 
         <b-field label="Пароль">
-          <b-input type="password" password-reveal v-model="password"></b-input>
+          <b-input type="password" v-model="password"></b-input>
         </b-field>
 
         <b-button native-type="submit">Войти</b-button>
