@@ -10,9 +10,3 @@ export default {
   name: 'App'
 }
 </script>
-
-<style scoped>
-  #app {
-    background: black;
-  }
-</style>
