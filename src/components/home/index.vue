@@ -23,8 +23,8 @@
 <script>
 export default {
   mounted() {
-    if (localStorage.loggedIn)
-      this.$router.push('/current')
+    if (localStorage.loggedIn === 'true')
+      this.$router.push('/profile')
   }
 }
 </script>

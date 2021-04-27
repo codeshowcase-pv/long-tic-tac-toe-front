@@ -13,7 +13,7 @@ import CurrentProfile from './components/current/profile';
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
-  { path: '/current', component: CurrentProfile },
+  { path: '/profile', component: CurrentProfile },
 ];
 
 // ----- Создание роутов
