@@ -1,21 +1,21 @@
 <template>
-  <div class="tile is-ancestor is-4 box py-3">
-    <div class="tile is-parent is-vertical is-align-items-center">
-      <div class="tile is-child">
+  <div class="box">
+    <div class="tile is-vertical is-align-items-center">
+      <b-field>
         <b-button tag="router-link"
                   to="/login"
                   type="is-primary">
           Войти
         </b-button>
-      </div>
+      </b-field>
 
-      <div class="tile is-child">
+      <b-field>
         <b-button tag="router-link"
                   to="/registration"
                   type="is-info">
           Зарегистрироваться (бесплатно без смс)
         </b-button>
-      </div>
+      </b-field>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@
 export default {
   mounted() {
     if (localStorage.loggedIn === 'true')
-      this.$router.push('/profile')
-  }
-}
+      this.$router.push('/profile');
+  },
+};
 </script>
