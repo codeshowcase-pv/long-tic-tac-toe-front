@@ -5,15 +5,17 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 // ----- Файлы компонентов
-import Home           from './components/home';
-import Login          from './components/login';
-import CurrentProfile from './components/current/profile';
+import Home         from './components/home';
+import Login        from './components/login';
+import Profile      from './components/current/profile';
+import Registration from './components/registration';
 
 // ----- Описание роутов
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
-  { path: '/profile', component: CurrentProfile },
+  { path: '/profile', component: Profile },
+  { path: '/registration', component: Registration },
 ];
 
 // ----- Создание роутов
