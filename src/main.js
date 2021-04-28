@@ -9,7 +9,7 @@ import store  from './store';
 
 // ----- CSS файлы
 import 'buefy/dist/buefy.css';
-import './styles/application.css';
+import './styles/application.scss';
 
 // ----- Подключение библиотек
 Vue.use(Buefy);
