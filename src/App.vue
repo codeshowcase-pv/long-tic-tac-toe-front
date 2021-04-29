@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="h-100 is-flex is-flex-direction-column">
-    <b-navbar v-if="loggedIn" >
+    <b-navbar v-if="loggedIn">
       <template #brand>
         <b-navbar-item tag="router-link" to="/">
           <img src="./assets/logo.svg" alt="Картинка с крестиками-ноликами">
@@ -47,3 +47,11 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  computed: mapState(['loggedIn']),
+};
+</script>

@@ -1,17 +1,28 @@
 import axios from 'axios';
+import store from '@/store';
 
-axios.defaults.xsrfCookieName  = 'CSRF-TOKEN';
-axios.defaults.xsrfHeaderName  = 'X-CSRF-Token';
-axios.defaults.withCredentials = true;
+const api = axios.create({
+  baseURL: process.env.VUE_APP_API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
-// TODO: вынести в переменную окружения
-const BASE_URL = 'http://localhost:3000';
+api.interceptors.request.use(function (config) {
+  if (store.state.loggedIn) config.headers['Authorization'] = `Bearer ${ localStorage.accessToken }`;
+  return config;
+});
 
-export const login = (login, password) =>
-  axios.post(`${ BASE_URL }/login`, {
+export const login = (login, password) => {
+  return api.post(`/login`, {
     login:    login,
     password: password,
   });
+};
 
 export const logout = () =>
-  axios.delete(`${ BASE_URL }/logout`);
+  api.delete(`/logout`);
+
+// TODO: удалить после тестирования
+export const profile = () =>
+  api.get(`/current/user`);

@@ -3,6 +3,7 @@ node_modules
 /dist
 .ruby-version
 Procfile
+.env
 
 # local env files
 .env.local
