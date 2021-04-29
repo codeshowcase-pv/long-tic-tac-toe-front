@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ReturnButton from 'components/buttons/return.vue';
+import ReturnButton from '@/components/buttons/return.vue';
 
 export default {
   components: { ReturnButton },

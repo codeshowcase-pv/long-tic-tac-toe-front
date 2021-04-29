@@ -17,7 +17,7 @@
 
 <script>
 import { mapState }                from 'vuex';
-import { logout as logoutRequest } from 'src/api';
+import { logout as logoutRequest } from '@/api';
 
 export default {
   computed: mapState(['userName']),

@@ -3,9 +3,9 @@ import Buefy from 'buefy';
 import Vue   from 'vue';
 
 // ----- JS и Vue файлы
-import App    from './App.vue';
-import router from './router';
-import store  from './store';
+import App    from '@/App.vue';
+import router from '@/router';
+import store  from '@/store';
 
 // ----- CSS файлы
 import 'buefy/dist/buefy.css';

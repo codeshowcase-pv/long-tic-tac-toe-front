@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import { login as loginRequest } from 'src/api';
-import ReturnButton              from 'components/buttons/return';
+import { login as loginRequest } from '@/api';
+import ReturnButton              from '@/components/buttons/return';
 
 export default {
   components: { ReturnButton },
