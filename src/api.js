@@ -4,6 +4,7 @@ axios.defaults.xsrfCookieName  = 'CSRF-TOKEN';
 axios.defaults.xsrfHeaderName  = 'X-CSRF-Token';
 axios.defaults.withCredentials = true;
 
+// TODO: вынести в переменную окружения
 const BASE_URL = 'http://localhost:3000';
 
 export const login = (login, password) =>

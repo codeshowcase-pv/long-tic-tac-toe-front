@@ -2,6 +2,7 @@
 node_modules
 /dist
 .ruby-version
+Procfile
 
 # local env files
 .env.local
