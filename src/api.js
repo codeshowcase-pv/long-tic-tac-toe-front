@@ -8,10 +8,19 @@ const api = axios.create({
   },
 });
 
+function nonLogoutRequest(config) { return config.url !== '/logout'; }
+
 api.interceptors.request.use(function (config) {
   if (store.state.loggedIn) config.headers['Authorization'] = `Bearer ${ localStorage.accessToken }`;
   return config;
-});
+}, null, { runWhen: nonLogoutRequest });
+
+function logoutRequest(config) { return config.url === '/logout'; }
+
+api.interceptors.request.use(function (config) {
+  if (store.state.loggedIn) config.headers['X-Refresh-Token'] = localStorage.refreshToken;
+  return config;
+}, null, { runWhen: logoutRequest });
 
 export const login = (login, password) => {
   return api.post(`/login`, {
