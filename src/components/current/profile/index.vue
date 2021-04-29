@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import { mapState }                from 'vuex';
-import { logout as logoutRequest } from '@/api';
+import { mapState }                                       from 'vuex';
+import { logout as logoutRequest, profile as getProfile } from '@/api';
 
 export default {
   computed: mapState(['userName']),
@@ -25,6 +25,12 @@ export default {
   data: () => ({
     loading: false,
   }),
+
+  // TODO: удалить после тестирования
+  mounted() {
+    getProfile();
+    // this.sendErrorNotification('Работает блеать');
+  },
 
   methods: {
     logout() {
@@ -37,6 +43,17 @@ export default {
           })
           .finally(() => this.loading = false);
     },
+
+    // TODO: удалить после тестирования
+    // sendErrorNotification(text) {
+    //   this.$buefy.notification.open({
+    //     duration: 5000,
+    //     message:  `<strong>Ошибка!</strong></br>${ text }`,
+    //     position: 'is-bottom-right',
+    //     type:     'is-danger',
+    //     hasIcon:  true,
+    //   });
+    // },
   },
 };
 </script>
