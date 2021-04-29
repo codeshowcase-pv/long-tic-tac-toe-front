@@ -8,41 +8,27 @@ const api = axios.create({
   },
 });
 
-function nonLogoutRequest(config) { return config.url !== '/logout'; }
-
 api.interceptors.request.use(
   function (config) {
-    if (store.state.loggedIn) config.headers['Authorization'] = `Bearer ${ localStorage.accessToken }`;
+    if (store.state.loggedIn) {
+      if (['/logout', '/refresh'].includes(config.url)) {
+        config.headers['X-Refresh-Token'] = localStorage.getItem('refreshToken');
+      } else {
+        config.headers['Authorization'] = `Bearer ${ localStorage.getItem('accessToken') }`;
+      }
+    }
+
     return config;
   },
-  null,
-  { runWhen: nonLogoutRequest },
-);
-
-function requestWithRefreshToken(config) { return config.url === '/logout' || config.url === '/refresh'; }
-
-api.interceptors.request.use(
-  function (config) {
-    if (store.state.loggedIn) config.headers['X-Refresh-Token'] = localStorage.refreshToken;
-    return config;
-  },
-  null,
-  { runWhen: requestWithRefreshToken },
 );
 
 api.interceptors.response.use(
   null,
   function (error) {
-    const originalRequest = error.config;
     if (error.response.data.code === 'access_token_expired') {
-      return axios.request({
-        method:  'post',
-        url:     `${ process.env.VUE_APP_API_BASE_URL }/refresh`,
-        headers: { 'X-Refresh-Token': localStorage.refreshToken },
-      }).then(({ data }) => {
+      return refresh().then(({ data }) => {
         localStorage.setItem('accessToken', data.access);
-        originalRequest.headers['Authorization'] = `Bearer ${ localStorage.accessToken }`;
-        return axios(originalRequest);
+        return api(error.config);
       });
     }
   },
@@ -57,6 +43,9 @@ export const login = (login, password) => {
 
 export const logout = () =>
   api.delete(`/logout`);
+
+export const refresh = () =>
+  api.post('/refresh');
 
 // TODO: удалить после тестирования
 export const profile = () =>
