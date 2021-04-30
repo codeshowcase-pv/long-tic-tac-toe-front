@@ -32,7 +32,7 @@
 
 <script>
 import { mapState }                from 'vuex';
-import { logout as logoutRequest } from '@/api/authentication';
+import { logout as logoutRequest } from '@/api/session';
 
 export default {
   computed: mapState(['loggedIn']),

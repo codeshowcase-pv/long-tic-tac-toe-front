@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { login as loginRequest } from '@/api/authentication';
+import { login as loginRequest } from '@/api/session';
 import ReturnButton              from '@/components/buttons/return';
 
 export default {
