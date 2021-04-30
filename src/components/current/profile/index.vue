@@ -40,10 +40,7 @@ export default {
       this.loading = true;
 
       logoutRequest()
-          .then(() => {
-            this.$store.commit('signUserOut');
-            this.$router.push('/');
-          })
+          .then(() => this.$store.commit('signUserOut'))
           .finally(() => this.loading = false);
     },
 

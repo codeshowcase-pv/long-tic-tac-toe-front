@@ -23,6 +23,7 @@ const store = new Vuex.Store({
       state.loggedIn = false;
       state.userName = null;
       LocalStorageProcessor.clear();
+      window.location.replace('/');
     },
   },
 });
