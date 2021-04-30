@@ -2,8 +2,8 @@
   <div id="app" class="h-100 is-flex is-flex-direction-column">
     <b-navbar v-if="loggedIn">
       <template #brand>
-        <b-navbar-item tag="router-link" to="/">
-          <img src="./assets/logo.svg" alt="Картинка с крестиками-ноликами">
+        <b-navbar-item tag="router-link" :to="{ name: 'root' }">
+          <img src="@/assets/logo.svg" alt="Картинка с крестиками-ноликами">
         </b-navbar-item>
       </template>
 

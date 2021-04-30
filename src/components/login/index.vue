@@ -2,7 +2,7 @@
   <div class="box">
     <div class="tile is-vertical is-align-items-center">
       <b-field>
-        <return-button route="/" text="На главную"/>
+        <return-button :route="{ name: 'root' }" text="На главную"/>
       </b-field>
 
       <b-field label="Логин" :label-position="'on-border'">
@@ -46,7 +46,7 @@ export default {
       loginRequest(this.login, this.password)
           .then(({ data }) => {
             this.$store.commit('signUserIn', data);
-            this.$router.push('/profile');
+            this.$router.push({ name: 'my_profile' });
           })
           .finally(() => this.loading = false);
     },

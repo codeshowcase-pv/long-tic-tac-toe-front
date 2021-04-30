@@ -3,7 +3,7 @@
     <div class="tile is-vertical is-align-items-center">
       <b-field>
         <b-button tag="router-link"
-                  to="/login"
+                  :to="{ name: 'login' }"
                   type="is-primary">
           Войти
         </b-button>
@@ -11,7 +11,7 @@
 
       <b-field>
         <b-button tag="router-link"
-                  to="/registration"
+                  :to="{ name: 'registration' }"
                   type="is-info">
           Зарегистрироваться (бесплатно без смс)
         </b-button>
