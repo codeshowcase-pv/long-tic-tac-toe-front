@@ -16,8 +16,11 @@
 </template>
 
 <script>
-import { mapState }                                       from 'vuex';
-import { logout as logoutRequest, profile as getProfile } from '@/api';
+import { mapState }                from 'vuex';
+import { logout as logoutRequest } from '@/api/authentication';
+
+// TODO: удалить после тестирования
+import { profile as getProfile } from '@/api/current_user';
 
 export default {
   computed: mapState(['userName']),
@@ -38,7 +41,7 @@ export default {
 
       logoutRequest()
           .then(() => {
-            this.$store.commit('clearLocalStorage');
+            this.$store.commit('signUserOut');
             this.$router.push('/');
           })
           .finally(() => this.loading = false);

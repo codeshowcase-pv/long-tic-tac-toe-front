@@ -1,27 +1,28 @@
-import Vue  from 'vue';
-import Vuex from 'vuex';
+import Vue                   from 'vue';
+import Vuex                  from 'vuex';
+import LocalStorageProcessor from '@/services/local_storage_processor';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    loggedIn: !!localStorage.accessToken,
-    userName: localStorage.userName,
+    // Как только юзер открывает сайт, устанавливаем, залогинен ли он
+    // Этот флаг должен быть всегда актуален
+    loggedIn: !!LocalStorageProcessor.getAccessToken(),
+    userName: localStorage.user_name,
   },
 
   mutations: {
-    fillLocalStorage(state, data) {
-      state.loggedIn            = true;
-      localStorage.accessToken  = data.access;
-      localStorage.refreshToken = data.refresh;
-
-      state.userName        = data.user.name;
-      localStorage.userName = data.user.name;
+    signUserIn(state, data) {
+      state.loggedIn = true;
+      state.userName = data.user.name;
+      LocalStorageProcessor.saveData(data);
     },
 
-    clearLocalStorage(state) {
+    signUserOut(state) {
       state.loggedIn = false;
-      localStorage.clear();
+      state.userName = null;
+      LocalStorageProcessor.clear();
     },
   },
 });

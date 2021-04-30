@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { login as loginRequest } from '@/api';
+import { login as loginRequest } from '@/api/authentication';
 import ReturnButton              from '@/components/buttons/return';
 
 export default {
@@ -45,7 +45,7 @@ export default {
 
       loginRequest(this.login, this.password)
           .then(({ data }) => {
-            this.$store.commit('fillLocalStorage', data);
+            this.$store.commit('signUserIn', data);
             this.$router.push('/profile');
           })
           .finally(() => this.loading = false);
