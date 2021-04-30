@@ -7,14 +7,13 @@ Vue.use(VueRouter);
 // ----- Файлы компонентов
 import Home         from '@/components/home';
 import Login        from '@/components/login';
-import Profile      from '@/components/current/profile';
 import Registration from '@/components/registration';
 
 // ----- Описание роутов
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
-  { path: '/profile', component: Profile },
+  { path: '/profile', name: 'my_profile', component: () => import('@/components/current/profile') },
   { path: '/registration', component: Registration },
 ];
 
