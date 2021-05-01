@@ -1,28 +1,22 @@
-// ----- Импорт и использование библиотеки
 import Vue       from 'vue';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-// ----- Файлы компонентов
-import Home         from '@/components/home';
-import Login        from '@/components/login';
-import Profile      from '@/components/current/profile';
-import Registration from '@/components/registration';
-
-// ----- Описание роутов
 const routes = [
-  { path: '/', component: Home },
-  { path: '/login', component: Login },
-  { path: '/profile', component: Profile },
-  { path: '/registration', component: Registration },
+  // -----
+  { name: 'root', path: '/', component: () => import('@/components/home') },
+  // -----
+  { name: 'registration', path: '/registration', component: () => import('@/components/registration') },
+  { name: 'login', path: '/login', component: () => import('@/components/login') },
+  // -----
+  { name: 'my_profile', path: '/profile', component: () => import('@/components/current_user/profile') },
+  // -----
 ];
 
-// ----- Создание роутов
 const router = new VueRouter({
   routes,
   mode: 'history',
 });
 
-// ----- /барабанная дробь/ Экспорт роутов!
 export default router;

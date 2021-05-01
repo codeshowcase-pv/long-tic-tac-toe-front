@@ -39,8 +39,8 @@ api.interceptors.response.use(
         return api(error.config);
       });
     }
-      // Если истёк refresh-токен, все данные пользователя сбрасываются
-      // TODO: Пользователь должен полуить уведомление о том, что время сессии истекло
+    // Если истёк refresh-токен, все данные пользователя сбрасываются
+    // TODO: Пользователь должен полуить уведомление о том, что время сессии истекло
     //   и быть переправлен на страницу входа
     else if (error.response.data.code === 'refresh_token_expired') {
       store.commit('signUserOut');
