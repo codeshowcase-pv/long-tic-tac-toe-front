@@ -1,6 +1,10 @@
 <template>
   <div class="box">
     <div class="tile is-vertical is-align-items-center">
+      <b-field>
+        <return-button route="/" text="На главную"/>
+      </b-field>
+
       <b-field label="Логин" :label-position="'on-border'">
         <b-input v-model="login"
                  @keypress.native.enter.prevent="submit"/>
@@ -23,32 +27,26 @@
 </template>
 
 <script>
-import { login as loginRequest } from '../../api';
+import { login as loginRequest } from '@/api/authentication';
+import ReturnButton              from '@/components/buttons/return';
 
 export default {
+  components: { ReturnButton },
+
   data: () => ({
     login:    null,
     password: null,
     loading:  false,
   }),
 
-  mounted() {
-    if (localStorage.loggedIn === 'true') this.redirectToProfile();
-  },
-
   methods: {
-    redirectToProfile() {
-      this.$router.push('/profile');
-    },
-
     submit() {
       this.loading = true;
 
       loginRequest(this.login, this.password)
           .then(({ data }) => {
-            localStorage.loggedIn = true;
-            localStorage.name     = data.name;
-            this.redirectToProfile();
+            this.$store.commit('signUserIn', data);
+            this.$router.push('/profile');
           })
           .finally(() => this.loading = false);
     },

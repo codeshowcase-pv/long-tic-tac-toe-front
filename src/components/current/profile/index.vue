@@ -16,34 +16,47 @@
 </template>
 
 <script>
-import { logout as logoutRequest } from '../../../api';
+import { mapState }                from 'vuex';
+import { logout as logoutRequest } from '@/api/authentication';
+
+// TODO: удалить после тестирования
+import { profile as getProfile } from '@/api/current_user';
 
 export default {
+  computed: mapState(['userName']),
+
   data: () => ({
-    loading:  false,
-    userName: localStorage.name,
+    loading: false,
   }),
 
+  // TODO: удалить после тестирования
   mounted() {
-    if (localStorage.loggedIn !== 'true') this.redirectToLoginPage();
+    getProfile();
+    // this.sendErrorNotification('Работает блеать');
   },
 
   methods: {
-    redirectToLoginPage() {
-      this.$router.push('/login');
-    },
-
     logout() {
       this.loading = true;
 
       logoutRequest()
           .then(() => {
-            localStorage.loggedIn = false;
-            localStorage.name     = null;
-            this.redirectToLoginPage();
+            this.$store.commit('signUserOut');
+            this.$router.push('/');
           })
           .finally(() => this.loading = false);
     },
+
+    // TODO: удалить после тестирования
+    // sendErrorNotification(text) {
+    //   this.$buefy.notification.open({
+    //     duration: 5000,
+    //     message:  `<strong>Ошибка!</strong></br>${ text }`,
+    //     position: 'is-bottom-right',
+    //     type:     'is-danger',
+    //     hasIcon:  true,
+    //   });
+    // },
   },
 };
 </script>

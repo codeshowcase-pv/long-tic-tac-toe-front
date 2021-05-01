@@ -3,13 +3,13 @@ import Buefy from 'buefy';
 import Vue   from 'vue';
 
 // ----- JS и Vue файлы
-import App    from './App.vue';
-import router from './router';
-import store  from './store';
+import App    from '@/App.vue';
+import router from '@/router';
+import store  from '@/store';
 
 // ----- CSS файлы
 import 'buefy/dist/buefy.css';
-import './styles/application.css';
+import './styles/application.scss';
 
 // ----- Подключение библиотек
 Vue.use(Buefy);
