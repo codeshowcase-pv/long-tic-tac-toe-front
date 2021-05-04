@@ -12,6 +12,8 @@ const routes = [
   // -----
   { name: 'my_profile', path: '/profile', component: () => import('@/components/current_user/profile') },
   // -----
+  { name: 'chat', path: '/chat', component: () => import('@/components/chat') },
+  // -----
 ];
 
 const router = new VueRouter({
