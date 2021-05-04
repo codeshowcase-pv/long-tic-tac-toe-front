@@ -11,6 +11,10 @@
         <b-navbar-item tag="router-link" :to="{ name: 'my_profile' }">
           Мой профиль
         </b-navbar-item>
+
+        <b-navbar-item tag="router-link" :to="{ name: 'chat' }">
+          В чат
+        </b-navbar-item>
       </template>
 
       <template #end>
