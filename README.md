@@ -1,24 +1,9 @@
-# long-tic-tac-toe-front
-
-## Project setup
+# Запуск сервера в докере
+1. На основе `.env.example` создать `.env`
+2. Запустить контейнер "раннер", внутри него установить пакеты
 ```
-yarn install
+docker-compose run runner
+yarn
+exit
 ```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+3. Запустить сервер `docker-compose up server`

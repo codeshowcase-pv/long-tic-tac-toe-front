@@ -1,0 +1,35 @@
+version: '2.4'
+
+services:
+  frontend: &frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NODE_MAJOR: '14'
+        YARN_VERSION: '1.22.5'
+    image: long-ttt-front:0.0.0-alpha
+    stdin_open: true
+    tty: true
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      YARN_CACHE_FOLDER: /app/node_modules/.yarn-cache
+    volumes:
+      - .:/app:cached
+    tmpfs:
+      - /tmp
+
+  server:
+    <<: *frontend
+    command: yarn serve
+    ports:
+      - '8080:8080'
+
+  runner:
+    <<: *frontend
+    command: /bin/bash
+    ports:
+      - '8080:8080'
+
+volumes:
+  node_modules:
